@@ -388,14 +388,14 @@
               <FilePath>..\src\I2S_Master.c</FilePath>
             </File>
             <File>
-              <FileName>UART.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\UART.c</FilePath>
-            </File>
-            <File>
               <FileName>am_hal_pdm.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\mcu\apollo3\hal\am_hal_pdm.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\am_uart.c</FilePath>
             </File>
           </Files>
         </Group>

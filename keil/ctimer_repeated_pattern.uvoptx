@@ -261,8 +261,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\src\UART.c</PathWithFileName>
-      <FilenameWithoutPath>UART.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\..\mcu\apollo3\hal\am_hal_pdm.c</PathWithFileName>
+      <FilenameWithoutPath>am_hal_pdm.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -273,8 +273,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\..\mcu\apollo3\hal\am_hal_pdm.c</PathWithFileName>
-      <FilenameWithoutPath>am_hal_pdm.c</FilenameWithoutPath>
+      <PathWithFileName>..\src\am_uart.c</PathWithFileName>
+      <FilenameWithoutPath>am_uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

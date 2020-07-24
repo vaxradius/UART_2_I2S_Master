@@ -43,8 +43,10 @@ volatile bool g_bPDMDataReady = false;
 
 int16_t i16PDMBuf[2][BUF_SIZE] = {{0},{0}};
 int16_t i16I2SBuf[2][BUF_SIZE] = {{0},{0}};
+int16_t i16UARTBuf[2][BUF_SIZE] = {{0},{0}};
 uint32_t u32PDMPingpong = 0;
 uint32_t u32I2SPingpong = 0;
+uint32_t u32UARTPingpong = 0;
 
 //*****************************************************************************
 //
@@ -526,8 +528,10 @@ main(void)
 	uint32_t index;
 	uint32_t u32PDMpg;
 	uint32_t u32I2Spg;
-	 am_hal_burst_avail_e          eBurstModeAvailable;
+	am_hal_burst_avail_e          eBurstModeAvailable;
 	am_hal_burst_mode_e	eBurstMode;
+
+	const uint8_t data = 'A';
 
 	//
 	// Perform the standard initialzation for clocks, cache settings, and
@@ -602,14 +606,19 @@ main(void)
 		if(g_bPDMDataReady == true)
 		{
 			g_bPDMDataReady = false;
+			u32UARTPingpong++;
 
 			am_hal_gpio_output_toggle(8);
+			am_uart_send(1, &data);
+			//memset(i16UARTBuf[(u32UARTPingpong)%2],0, BUF_SIZE*2);
+			am_uart_receive(BUF_SIZE*2, (uint8_t *) i16UARTBuf[(u32UARTPingpong)%2]);
+			
 
 			u32PDMpg = u32PDMPingpong;
 			u32I2Spg = u32I2SPingpong;
 
 			
-#if 1
+#if 0
 			if(index > VOGUE_SIZE)
 				index = 4096;
 
@@ -620,7 +629,8 @@ main(void)
 
 #else
 			/*Copy preprocessed data into NEXT I2S Buffer*/
-			memcpy( i16I2SBuf[(u32I2Spg+1)%2],i16PDMBuf[(u32PDMpg-1)%2],u32FrameSize*2);
+			//memcpy( i16I2SBuf[(u32I2Spg+1)%2],i16PDMBuf[(u32PDMpg-1)%2],BUF_SIZE*2);
+			memcpy( i16I2SBuf[(u32I2Spg+1)%2],i16UARTBuf[(u32UARTPingpong-1)%2],BUF_SIZE*2);
 #endif
 
 			if(u32I2Spg != u32I2SPingpong)
